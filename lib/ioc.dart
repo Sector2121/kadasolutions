@@ -31,9 +31,7 @@ void registerApisBeforeRunApp() {
 
   const connectionTimeout = Duration(seconds: 20);
 
-  dio.options.baseUrl = baseUrl;
-  dio.options.connectTimeout = connectionTimeout;
-  dio.options.receiveTimeout = connectionTimeout;
+  dio.setup(baseUrl, connectionTimeout);
 
   services.registerSingleton<ProductsApi>(ProductsApi(dio));
 }

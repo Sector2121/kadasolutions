@@ -13,9 +13,10 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     on<GetProductsEvent>((event, emit) async {
       emit(ProductsLoadingState());
       try {
-        await productsInteractor.getProducts();
+        final products = await productsInteractor.getProducts();
+        emit(ProductsLoadedState(products));
       } catch (e) {
-        emit(ProductsErrorState());
+        emit(ProductsErrorState('$e'));
       }
     });
   }
