@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kadasolutions/index.dart';
 
 class NavigationRoutes {
   static const products = 'products';
@@ -15,17 +16,12 @@ class NavigationService {
 
   void goBack<T extends Object?>([T? result]) => GoRouter.of(context).pop(result);
 
-  void goToProductsPage() {
-    _goToPageImpl(
-      context: context,
-      routeName: NavigationRoutes.products,
-    );
-  }
 
-  void goToDetailedProductPage() {
+  void goToDetailedProductPage(Product product) {
     _goToPageImpl(
       context: context,
       routeName: NavigationRoutes.productDetails,
+      extra: product,
     );
   }
 

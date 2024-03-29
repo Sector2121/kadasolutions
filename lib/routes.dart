@@ -4,8 +4,6 @@ import 'package:kadasolutions/index.dart';
 
 GoRouter? _router;
 final _appShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'AppShellRouteNavigatorKey');
-final _loginShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'LoginShellRouteNavigatorKey');
-final _scoreboardShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'ScoreboardShellNavigatorKey');
 
 GoRouter createRouterConfig() {
   _router ??= GoRouter(
@@ -26,19 +24,12 @@ GoRouter createRouterConfig() {
             name: NavigationRoutes.productDetails,
             path: '/${NavigationRoutes.productDetails}',
             pageBuilder: (context, state) {
+              final product = state.extra as Product;
               return CustomTransitionPage(
                 key: state.pageKey,
-                child: const ProductDetailsPage(),
+                child: ProductDetailsPage(product: product),
                 transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                  return SlideTransition(
-                    position: animation.drive(
-                      Tween<Offset>(
-                        begin: const Offset(0.5, 0),
-                        end: Offset.zero,
-                      ).chain(CurveTween(curve: Curves.easeIn)),
-                    ),
-                    child: child,
-                  );
+                  return FadeTransition(opacity: animation, child: child);
                 },
               );
             },

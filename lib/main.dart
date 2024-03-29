@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 
 void main() {
   registerServices();
+  registerApisBeforeRunApp();
   registerBlocs();
   runApp(MyApp());
 }
