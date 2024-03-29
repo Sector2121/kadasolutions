@@ -23,20 +23,17 @@ GoRouter createRouterConfig() {
           GoRoute(
             name: NavigationRoutes.productDetails,
             path: '/${NavigationRoutes.productDetails}',
+            /*builder: (context, state) {
+              final product = state.extra as Product;
+              return ProductDetailsPage(product: product);
+            },*/
             pageBuilder: (context, state) {
+              final product = state.extra as Product;
               return CustomTransitionPage(
                 key: state.pageKey,
-                child: const ProductDetailsPage(),
+                child: ProductDetailsPage(product: product),
                 transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                  return SlideTransition(
-                    position: animation.drive(
-                      Tween<Offset>(
-                        begin: const Offset(0.5, 0),
-                        end: Offset.zero,
-                      ).chain(CurveTween(curve: Curves.easeIn)),
-                    ),
-                    child: child,
-                  );
+                  return FadeTransition(opacity: animation, child: child);
                 },
               );
             },
