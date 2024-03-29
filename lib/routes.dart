@@ -4,8 +4,6 @@ import 'package:kadasolutions/index.dart';
 
 GoRouter? _router;
 final _appShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'AppShellRouteNavigatorKey');
-final _loginShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'LoginShellRouteNavigatorKey');
-final _scoreboardShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'ScoreboardShellNavigatorKey');
 
 GoRouter createRouterConfig() {
   _router ??= GoRouter(
