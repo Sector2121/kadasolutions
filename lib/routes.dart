@@ -23,10 +23,6 @@ GoRouter createRouterConfig() {
           GoRoute(
             name: NavigationRoutes.productDetails,
             path: '/${NavigationRoutes.productDetails}',
-            /*builder: (context, state) {
-              final product = state.extra as Product;
-              return ProductDetailsPage(product: product);
-            },*/
             pageBuilder: (context, state) {
               final product = state.extra as Product;
               return CustomTransitionPage(
